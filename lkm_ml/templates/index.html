@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>대출 승인 확률 예측</title>
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+  <py-env>
+    - pandas
+    - pickle
+  </py-env>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif; /* 폰트 Arial로 변경 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px; /* padding 줄임 */
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: grid; /* grid layout으로 변경 */
+      grid-template-columns: repeat(2, 1fr); /* 두 개의 컬럼 */
+      gap: 10px; /* 컬럼 사이 간격 */
+    }
+
+    label {
+      margin-bottom: 5px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px; /* padding 줄임 */
+      margin-bottom: 10px; /* margin 줄임 */
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+
+    input[type="button"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px; /* padding 줄임 */
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      grid-column: span 2; /* 버튼이 두 컬럼에 걸쳐 나오도록 설정 */
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>대출 승인 확률 예측</h1>
+  <form method="POST">
+    <label for="person_age">person_age:</label>
+    <input type="text" name="person_age" id="person_age" value="25">
+    <label for="person_income">person_income:</label>
+    <input type="text" name="person_income" id="person_income" value="69000">
+    <label for="person_home_ownership">person_home_ownership:</label>
+    <input type="text" name="person_home_ownership" id="person_home_ownership" value="RENT">
+    <label for="person_emp_length">person_emp_length:</label>
+    <input type="text" name="person_emp_length" id="person_emp_length" value="3">
+    <label for="loan_intent">loan_intent:</label>
+    <input type="text" name="loan_intent" id="loan_intent" value="HOMEIMPROVEMENT">
+    <label for="loan_grade">loan_grade:</label>
+    <input type="text" name="loan_grade" id="loan_grade" value="F">
+    <label for="loan_amnt">loan_amnt:</label>
+    <input type="text" name="loan_amnt" id="loan_amnt" value="25000">
+    <label for="loan_int_rate">loan_int_rate:</label>
+    <input type="text" name="loan_int_rate" id="loan_int_rate" value="15.76">
+    <label for="loan_percent_income">loan_percent_income:</label>
+    <input type="text" name="loan_percent_income" id="loan_percent_income" value="0.36">
+    <label for="cb_person_default_on_file">cb_person_default_on_file:</label>
+    <input type="text" name="cb_person_default_on_file" id="cb_person_default_on_file" value="N">
+    <label for="cb_person_cred_hist_length">cb_person_cred_hist_length:</label>
+    <input type="text" name="cb_person_cred_hist_length" id="cb_person_cred_hist_length" value="2">
+    <input type="button" value="예측" onclick="predict()">
+  </form>
+  <h2>예측 결과: <span id="prediction"> 0.6923932 </span></h2> 
+  <br>
+  <div class="optimization">
+    <h3>대출 신청 최적화</h3>
+    <p style="font-size: 14px;">-예측 결과에서 조정해주세요</p> 
+    <label for="maxiam">성공 확률 조정 수치:</label>
+    <input type="text" name="maxiam" id="maxiam" value="0.6923932">
+    <h4>대출 금액 최대화</h4>
+    <div class="output">여기에 결과 출력</div>
+    <h4>이자 최소화</h4>
+    <div class="output">여기에 결과 출력</div> 
+  </div>
+  </form>
+</body>
+</html>
